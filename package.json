@@ -1,0 +1,9 @@
+{
+  "name": "conquista-espacial",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Juego arcade móvil sin dependencias",
+  "scripts": {
+    "test": "node --check game.js && node --check sw.js && node --test tests/*.test.mjs"
+  }
+}

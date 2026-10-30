@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#080d25" />
+  <meta name="description" content="Conquista Espacial: arcade de naves para jugar en el celular, incluso sin conexión." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="./icon.svg" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>Conquista Espacial · Juego móvil</title>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <div><span class="eyebrow">MISIÓN GALÁCTICA</span><strong>CONQUISTA <em>ESPACIAL</em></strong></div>
+      </div>
+      <div class="header-actions">
+        <button id="soundBtn" class="icon-button" aria-label="Activar sonido" aria-pressed="false" title="Sonido">♫</button>
+        <button id="pauseBtn" class="icon-button" aria-label="Pausar partida" disabled title="Pausa">Ⅱ</button>
+      </div>
+    </header>
+
+    <section class="hud" aria-label="Marcadores de la partida">
+      <div class="hud-stat"><span>PUNTOS</span><strong id="score">000000</strong></div>
+      <div class="hud-stat"><span>OLA</span><strong id="wave">01</strong></div>
+      <div class="hud-stat hud-health"><span>ESCUDO</span><div id="healthDots" aria-label="Escudo completo">♥ ♥ ♥</div></div>
+      <div class="hud-stat"><span>RÉCORD</span><strong id="best">000000</strong></div>
+    </section>
+
+    <section class="playfield" id="playfield" aria-label="Campo de batalla espacial">
+      <canvas id="game" aria-label="Nave espacial, enemigos y disparos" role="img"></canvas>
+      <div class="top-glow" aria-hidden="true"></div>
+      <div id="toast" class="toast" aria-live="polite"></div>
+
+      <div id="menuOverlay" class="overlay">
+        <div class="overlay-card">
+          <div class="illustration" aria-hidden="true">🚀</div>
+          <div class="pill">PROTOCOLO DE DEFENSA · 001</div>
+          <h1>Tu galaxia.<br /><span>Tu misión.</span></h1>
+          <p>Esquiva meteoritos, derrota naves enemigas y mejora tu equipo para sobrevivir a cada nueva ola.</p>
+          <button id="startBtn" class="primary-button">INICIAR MISIÓN <span aria-hidden="true">➜</span></button>
+          <small>Izquierda: mover nave · Derecha: disparar</small>
+        </div>
+      </div>
+
+      <div id="pauseOverlay" class="overlay" hidden>
+        <div class="overlay-card compact">
+          <div class="pill">MISIÓN EN ESPERA</div>
+          <h2>En pausa</h2>
+          <p>Tu nave está a salvo hasta que regreses.</p>
+          <button id="resumeBtn" class="primary-button">CONTINUAR <span aria-hidden="true">➜</span></button>
+          <button id="pauseRestartBtn" class="secondary-button">Reiniciar partida</button>
+        </div>
+      </div>
+
+      <div id="upgradeOverlay" class="overlay" hidden>
+        <div class="overlay-card upgrade-card">
+          <div class="pill">NUEVA OLA DESBLOQUEADA</div>
+          <h2>Elige una mejora</h2>
+          <p>Una tecnología para seguir defendiendo la galaxia.</p>
+          <div class="upgrade-choices">
+            <button class="upgrade-option" data-upgrade="blaster"><span>⚡</span><strong>Disparo rápido</strong><small>Menos tiempo entre disparos</small></button>
+            <button class="upgrade-option" data-upgrade="engine"><span>✧</span><strong>Motor veloz</strong><small>Mayor velocidad de movimiento</small></button>
+            <button class="upgrade-option" data-upgrade="armor"><span>♥</span><strong>Escudo extra</strong><small>Recupera vida y amplía el escudo</small></button>
+          </div>
+        </div>
+      </div>
+
+      <div id="gameoverOverlay" class="overlay" hidden>
+        <div class="overlay-card compact">
+          <div class="pill">FIN DE LA MISIÓN</div>
+          <h2>Buen combate,<br /><span>comandante.</span></h2>
+          <p>Has defendido la galaxia hasta la ola <strong id="finalWave">1</strong>.</p>
+          <div class="final-score"><span>PUNTUACIÓN</span><strong id="finalScore">0</strong></div>
+          <p id="newRecord" class="record-message" hidden>✦ ¡NUEVO RÉCORD!</p>
+          <button id="restartBtn" class="primary-button">VOLVER A JUGAR <span aria-hidden="true">➜</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Controles táctiles">
+      <div class="control-label">MOVIMIENTO</div>
+      <div id="joystick" class="joystick-zone" aria-label="Control para mover la nave" role="group">
+        <div class="joystick-ring"><div id="stick" class="joystick-stick"></div></div>
+      </div>
+      <div class="control-center"><span>◈</span><small>TOCA Y JUEGA</small></div>
+      <button id="fireBtn" class="fire-button" aria-label="Disparar"><span class="fire-symbol">◎</span><small>DISPARAR</small></button>
+    </section>
+    <footer>EL ESPACIO TE ESPERA <span>✦</span> VERSIÓN 0.1</footer>
+  </main>
+  <script src="./game.js" defer></script>
+</body>
+</html>
