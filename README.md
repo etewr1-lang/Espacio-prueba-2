@@ -1,5 +1,7 @@
 # Conquista Espacial 🚀
 
+> **Nueva versión Godot 4:** el prototipo de movimiento top-down para Android, con inercia, cámara centrada y joystick multitáctil, está en [godot/](./godot/). Mira [cómo abrirlo en Godot](./godot/README.md). La versión HTML5 sigue funcionando por separado.
+
 Primera versión jugable de un **juego para celular** con naves espaciales. Está desarrollado con **HTML5 Canvas, CSS y JavaScript**, sin librerías externas. El repositorio comenzó como `Espacio-prueba-2`.
 
 ## Funciones de la versión 0.1
